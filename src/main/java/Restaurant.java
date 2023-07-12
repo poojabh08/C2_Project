@@ -64,21 +64,11 @@ public class Restaurant {
         return name;
     }
 
-    public static void main(String[] args) {
-        RestaurantService rs = new RestaurantService();
-        Restaurant r = rs.addRestaurant("abc","bengaluru",LocalTime.of(9,0,0), LocalTime.of(22,0,0));
-
-        r.addToMenu("noodles",120);
-        r.addToMenu("momos",80);
-        r.addToMenu("pasta",250);
-        List<Item> arr = r.getMenu();
-        for(Item i: arr){
-            System.out.println(i.toString());
+    public int calculateAmount(List<String> selectedItems) {
+        int cost = 0;
+        for( String i : selectedItems){
+            cost = cost+ findItemByName(i).getPrice();
         }
-
-//        System.out.println("Restaurant ABC is Open: "+r.isRestaurantOpen());
-//        Restaurant rst = rs.findRestaurantByName("abc");
-//        System.out.println(rst.getName());
+        return cost;
     }
-
 }
